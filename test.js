@@ -33,7 +33,7 @@ window.onload = function () {
     }
     return (
       (document.querySelector("#" + pos).innerHTML =
-        String(check[book].info()).replace(/,/g, "<br>") + //this piece of code returns info about book and render it on site
+        String(Object.values(check[0]).toString()).replace(/,/g, "<br>") + //this piece of code returns info about book and render it on site
         "<br> Book: " + (book + 1) + '<br> <button id="change_read">Change read</button>'),
       (document.querySelector("#change_read").onclick = function changeRead() {
         //function of changing status of read
@@ -61,8 +61,8 @@ window.onload = function () {
         prompt("read")
       )
     ;
-    console.log(myLibrary_arr)//test
-    return (localStorage.myLibrary = JSON.stringify(myLibrary_arr));
+    console.log(myLibrary_arr[0].info())//test
+    return (localStorage.myLibrary = JSON.stringify(myLibrary_arr)); //bug, JSON.parse(localStorage.myLibrary).info() is not a function
   };
 
   document.querySelector("#deleteBook").onclick = function deleteBook() {
@@ -74,6 +74,5 @@ window.onload = function () {
       myLibrary.splice(position, 1)
     );
   };
-
   // TESTS
 };
