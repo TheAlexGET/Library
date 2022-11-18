@@ -67,11 +67,11 @@ console.log(myLibrary_arr)
     //this is not done yet
     let position = +prompt("Which book do you want to delete?", 1) - 1;
     let pos = prompt("Which position you want to delete?");
-    let newLibrary = JSON.parse(localStorage.myLibrary)
+    let newLibrary = JSON.parse(localStorage.getItem('myLibrary'))
     newLibrary.splice(position, 1)
     return (
       document.querySelector("#" + pos).innerHTML = "<h3>" + pos + "</h3>",
-      localStorage.myLibrary = JSON.stringify(newLibrary)
+      localStorage.setItem('myLibrary', JSON.stringify(newLibrary))
     );
   };
   // TESTS
