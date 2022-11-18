@@ -1,0 +1,42 @@
+.main_btn_div{
+    display: flex;
+    justify-content: space-around;
+    padding-top: 10%;
+}
+
+.button{
+    background-color: rgb(170, 201, 201);
+    border: 1px solid grey;
+    border-radius: 10px;
+    width: 200%;
+    height: 200%;
+}
+
+#change_read{
+    width: 20%;
+    border: 1px solid grey;
+    border-radius: 5px;
+    background-color: rgb(201, 201, 200);
+    justify-content: flex-end;
+    width: 30%;
+}
+
+.library{
+    width: 100%;
+    padding-top: 5%;
+}
+
+.library_1_row{
+    display: flex;
+    justify-content: space-around;
+}
+
+.library_1_row div{
+    width: 25%;
+    background-color: rgb(193, 216, 216);
+    font-size: larger;
+    font-style: oblique;
+    border-radius: 5px;
+    height: 200px;
+    text-align: center;
+}
