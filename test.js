@@ -23,7 +23,7 @@ window.onload = function () {
       );
     }
   } //add some styles
-  document.querySelector("#render").onclick = function render() {
+  document.querySelector("#render").onclick = function render() {  //WORKS
     //this is not done yet
     let pos = prompt("position", "b1");
     let book = +prompt("which book?", 1) - 1;
@@ -35,24 +35,23 @@ window.onload = function () {
       (document.querySelector("#" + pos).innerHTML =
         String(Object.values(check[0]).toString()).replace(/,/g, "<br>") + //this piece of code returns info about book and render it on site
         "<br> Book: " + (book + 1) + '<br> <button id="change_read">Change read</button>'),
-      (document.querySelector("#change_read").onclick = function changeRead() {
+      (document.querySelector("#change_read").onclick = function changeRead() {  // WORKS
         //function of changing status of read
         let new_read = prompt("Whats value of read now?", "Yes");
         return (
-          (localStorage.myLibrary = JSON.stringify(
-            (check[book].read = "Read: " + new_read)
-          )),
+          check[book].read = 'Read: ' + new_read,
+          localStorage.myLibrary = JSON.stringify(check),
           render()
         );
       })
     );
   };
 
-  document.querySelector("#newBook").onclick = function addBookToLibrary() {
+  document.querySelector("#newBook").onclick = function addBookToLibrary() { // WORKS
     //this works now
-    let leng = JSON.parse(localStorage.myLibrary).length;
-    console.log(JSON.parse(localStorage.myLibrary).length);
-    myLibrary_arr = JSON.parse(localStorage.myLibrary);
+    let leng = JSON.parse(localStorage.getItem('myLibrary')).length;
+    console.log(JSON.parse(localStorage.getItem('myLibrary')).length);
+    myLibrary_arr = JSON.parse(localStorage.getItem('myLibrary'));
     myLibrary_arr[leng] =
       new Book(
         prompt("title"),
@@ -61,17 +60,18 @@ window.onload = function () {
         prompt("read")
       )
     ;
-    console.log(myLibrary_arr[0].info())//test
-    return (localStorage.myLibrary = JSON.stringify(myLibrary_arr)); //bug, JSON.parse(localStorage.myLibrary).info() is not a function
+    return (localStorage.setItem('myLibrary', JSON.stringify(myLibrary_arr)));
   };
-
+console.log(myLibrary_arr)
   document.querySelector("#deleteBook").onclick = function deleteBook() {
     //this is not done yet
     let position = +prompt("Which book do you want to delete?", 1) - 1;
     let pos = prompt("Which position you want to delete?");
+    let newLibrary = JSON.parse(localStorage.myLibrary)
+    newLibrary.splice(position, 1)
     return (
-      (document.querySelector("#" + pos).innerHTML = "<h3>" + pos + "</h3>"),
-      myLibrary.splice(position, 1)
+      document.querySelector("#" + pos).innerHTML = "<h3>" + pos + "</h3>",
+      localStorage.myLibrary = JSON.stringify(newLibrary)
     );
   };
   // TESTS
