@@ -1,12 +1,5 @@
 "use strict";
 window.onload = function () {
-  //Выведите массив в HTML с помощью функции render(), которая перебирает массив и отображает каждую книгу на странице. Вы можете отобразить их в таблице или на карточках.
-  //Добавьте кнопку "НОВАЯ КНИГА". При нажатии на данную кнопку открывается форма ввода информации о новой книге: автор, название, количество страниц, прочитана ли она
-  //Добавьте кнопку удаления на карточку каждой книги - нужно будет связать ваши элементы DOM с реальными объектами книги (установка data-атрибута, который соответствует индексу массива библиотеки)
-  //Добавьте кнопку изменения статуса чтения книги (свойство read) на карточку каждой книги.
-  //localStorage (документы здесь) позволяет сохранять данные на компьютере пользователя. - its for future to improove project, Firebase (гляньте сюды!) - это онлайн база данных, которая сохраняет данные на сервере в облаке
-
-  //bug fixed
   let myLibrary = [];
   myLibrary = JSON.parse(localStorage.myLibrary);
   localStorage.setItem("myLibrary", JSON.stringify(myLibrary));
@@ -24,10 +17,8 @@ window.onload = function () {
         this.title + ", " + this.author + ", " + this.pages + ", " + this.read
       );
     }
-  } //add some styles
+  }
   document.querySelector("#render").onclick = function render() {
-    //WORKS
-    //this works(not 100%)
     let pos = prompt("position", "b1");
     let book = +prompt("which book?", 1) - 1;
     let check = JSON.parse(localStorage.myLibrary);
@@ -41,7 +32,6 @@ window.onload = function () {
         (book + 1) +
         '<br> <button id="change_read">Change read</button>'),
       (document.querySelector("#change_read").onclick = function changeRead() {
-        // WORKS
         //function of changing status of read
         let new_read = prompt("Whats value of read now?", "Yes");
         return (
@@ -54,7 +44,6 @@ window.onload = function () {
   };
 
   document.querySelector("#newBook").onclick = function addBookToLibrary() {
-    // WORKS
     let leng = JSON.parse(localStorage.getItem("myLibrary")).length;
     console.log(JSON.parse(localStorage.getItem("myLibrary")).length);
     myLibrary_arr = JSON.parse(localStorage.getItem("myLibrary"));
@@ -68,7 +57,6 @@ window.onload = function () {
   };
 
   document.querySelector("#deleteBook").onclick = function deleteBook() {
-    //this dont works on 100%
     let position = +prompt("Which book do you want to delete?", 1) - 1;
     let pos = prompt("Which position you want to delete?", 'b1');
     if(pos != ('b1' || 'b2' || 'b3')){
@@ -81,5 +69,4 @@ window.onload = function () {
       localStorage.setItem("myLibrary", JSON.stringify(newLibrary))
     );
   };
-  // TESTS
 };
