@@ -70,7 +70,10 @@ window.onload = function () {
   document.querySelector("#deleteBook").onclick = function deleteBook() {
     //this dont works on 100%
     let position = +prompt("Which book do you want to delete?", 1) - 1;
-    let pos = prompt("Which position you want to delete?");
+    let pos = prompt("Which position you want to delete?", 'b1');
+    if(pos != ('b1' || 'b2' || 'b3')){
+      return alert('wrong position please try again')
+    }
     let newLibrary = JSON.parse(localStorage.getItem("myLibrary"));
     newLibrary.splice(position, 1);
     return (
